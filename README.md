@@ -2,6 +2,10 @@
 
 A stylish and modern Pomodoro timer web application that helps you stay focused and productive using the Pomodoro Technique.
 
+## Live Demo
+
+Visit the live timer at: `https://<your-username>.github.io/<repository-name>`
+
 ## Features
 
 - 25-minute work sessions
@@ -38,3 +42,13 @@ Built with vanilla:
 No dependencies required!
 
 ## Installation
+
+### Local Installation
+1. Clone this repository or download the files
+2. Open `index.html` in your web browser
+
+### Deploy Your Own
+1. Fork this repository
+2. Go to repository Settings > Pages
+3. Under "Source", select your main branch and root folder
+4. Click Save - your timer will be available at `https://<your-username>.github.io/<repository-name>`

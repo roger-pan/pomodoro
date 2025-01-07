@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlotica's Pomodoro Timer</title>
+    <title>Matrix Pomodoro Timer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Carlotica's Pomodoro Timer</h1>
+        <div class="header">
+            <h1>Pomodoro in The Matrix</h1>
+            <button id="mode-toggle">☕️</button>
+        </div>
         <div class="timer-display">
             <span id="minutes">25</span>:<span id="seconds">00</span>
         </div>
@@ -16,11 +19,11 @@
             <button id="start">Start</button>
             <button id="reset">Reset</button>
         </div>
-        <div class="mode-controls">
-            <button id="mode-toggle">Rest Mode</button>
-        </div>
         <div class="mode-display">
-            <p id="mode-text">Work Time</p>
+            <p id="mode-text">You're Plugged Into The Matrix</p>
+        </div>
+        <div class="quote-container">
+            <p id="quote-text" class="quote"></p>
         </div>
     </div>
     <script src="script.js"></script>

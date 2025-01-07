@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,11 +16,11 @@ body {
 
 /* Work mode background */
 body:not(.rest-time) {
-    background-image: url('https://media.gq.com.mx/photos/5f8f55ebc10dacf7b3e878dc/16:9/w_2560%2Cc_limit/vivimos-en-una-simulacion-matrix.jpg');
+    background-image: url('https://www.indiewire.com/wp-content/uploads/2017/10/matrix-code.jpg');
     background-color: #000; /* Fallback color */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: cover;  /* Ensure the image covers the entire background */
+    background-position: left center;  /* Align the image to the left */
+    background-repeat: no-repeat;  /* Prevent the image from repeating */
     position: relative;
 }
 
@@ -36,8 +38,10 @@ body:not(.rest-time)::before {
 
 /* Rest mode background */
 body.rest-time {
-    background-image: linear-gradient(rgba(255, 159, 28, 0.05), rgba(255, 159, 28, 0.05));  /* Very light orange tint */
-    background-color: #fff8f0;  /* Light warm background */
+    background-image: url('https://miro.medium.com/v2/resize:fit:1400/1*mPfClF6KFAGJH4r-ltxKWw.jpeg'); /* Example image */
+    background-size: cover;  /* Ensure the image covers the entire background */
+    background-position: left center;  /* Align the image to the left */
+    background-repeat: no-repeat;  /* Prevent the image from repeating */
     position: relative;
 }
 
@@ -48,7 +52,7 @@ body.rest-time::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50%" x="50%" dominant-baseline="middle" text-anchor="middle" font-size="40">🥜</text></svg>');
+    background-image: url('data:image/svg+xml,<svg xmlns="/Users/roger/projects/pomodoro/image.jpg" viewBox="0 0 100 100"><text y="50%" x="50%" dominant-baseline="middle" text-anchor="middle" font-size="40">🥜</text></svg>');
     background-size: 100px 100px;
     background-position: 0 0;
     opacity: 0.15;
@@ -57,52 +61,71 @@ body.rest-time::before {
 
 .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.9);  /* Slightly more opaque for better visibility */
+    padding: 2rem;  /* Increase padding for more space */
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(12px);
+    width: 600px;  /* Fixed width */
+    max-width: 90%;  /* Ensure it doesn't exceed the viewport */
+    margin: 0 auto;  /* Center the container */
+    position: relative;  /* Ensure it stacks correctly */
+    z-index: 1;  /* Ensure it is above the background */
 }
 
 .timer-display {
     font-size: 7rem;
-    font-weight: 700;
+    font-weight: 600;
     margin: 2rem 0;
-    color: #1e1f21;  /* Dark gray for better contrast */
+    color: #1e1f21;
+    letter-spacing: -0.04em;
+    display: inline-block;  /* Ensure it can be animated */
+    transition: transform 0.3s ease;  /* Smooth transition for the ticker effect */
+}
+
+/* Ticker animation */
+@keyframes ticker {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);  /* Move up slightly */
+    }
 }
 
 /* Start button - Changes color based on mode */
 body:not(.rest-time) #start {
-    background-color: #5B5EF4;  /* Purple for work mode */
+    color: #FF4C4C;  /* Red for work mode */
+    border-color: #FF4C4C;
 }
 
 body:not(.rest-time) #start:hover {
-    background-color: #4A4DC9;
+    background-color: #FF4C4C;
+    color: white;
+    transform: scale(1.05);
 }
 
 body.rest-time #start {
-    background-color: #FF9F1C;  /* Orange for rest mode */
+    color: #5B5EF4;  /* Blue for rest mode */
+    border-color: #5B5EF4;
 }
 
 body.rest-time #start:hover {
-    background-color: #E88E19;
+    background-color: #5B5EF4;
+    color: white;
+    transform: scale(1.05);
 }
 
 /* Reset button - Changes color based on mode */
-body:not(.rest-time) #reset {
-    background-color: #F45B69;  /* Red for work mode */
+#reset {
+    color: #FF4C4C;  /* Red for reset button in work mode */
+    border-color: #FF4C4C;
 }
 
-body:not(.rest-time) #reset:hover {
-    background-color: #D14B57;
-}
-
-body.rest-time #reset {
-    background-color: #F45B69;  /* Keep red for both modes */
-}
-
-body.rest-time #reset:hover {
-    background-color: #D14B57;
+#reset:hover {
+    background-color: #FF4C4C;
+    color: white;
+    transform: scale(1.05);
 }
 
 /* Mode toggle - Changes color based on mode */
@@ -122,30 +145,208 @@ body.rest-time #mode-toggle:hover {
     background-color: #4A4DC9;
 }
 
-/* Common button styles */
-.controls button, .mode-controls button {
+/* Common button styles - Update base styles */
+.controls button {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 1.2rem;
     margin: 0 0.5rem;
-    padding: 0.8rem 1.8rem;  /* Slightly larger padding */
+    padding: 0.8rem 1.8rem;
     cursor: pointer;
-    color: white;
-    border: none;
-    border-radius: 12px;  /* More rounded corners */
+    background-color: transparent;
+    border: 2px solid currentColor;
+    border-radius: 12px;
     font-weight: 500;
-    transition: all 0.2s ease;
-    text-transform: uppercase;  /* More modern look */
-    letter-spacing: 0.5px;
-    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #mode-text {
-    font-size: 1.2rem;
-    color: #6e7175;  /* Softer gray */
-    margin-top: 1.5rem;
-    font-weight: 500;
+    font-size: 1.5rem;               /* Increase font size for better visibility */
+    margin-top: 1.5rem;              /* Space above the label */
+    font-weight: 600;                /* Use a bolder weight */
+    letter-spacing: -0.01em;         /* Slightly tighter letter spacing */
+    padding: 0.5rem 1.5rem;          /* Add padding for a pill-like feel */
+    border-radius: 50px;             /* Make it pill-shaped */
+    background-color: rgba(255, 255, 255, 0.8);  /* Light background for contrast */
+    display: inline-block;            /* Make it inline-block to fit content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    transition: all 0.3s ease;       /* Smooth transition for hover effects */
+    color: #FF4C4C;  /* Red for work mode */
+}
+
+/* Optional hover effect to enhance interactivity */
+#mode-text:hover {
+    background-color: rgba(255, 255, 255, 0.9);  /* Slightly darker on hover */
+}
+
+/* Work mode text */
+body:not(.rest-time) #mode-text {
+    color: #FF4C4C;  /* Red for work mode */
+    background-color: rgba(255, 76, 76, 0.1);  /* Light red background */
+    border: 2px solid rgba(255, 76, 76, 0.2);
+}
+
+/* Rest mode text */
+body.rest-time #mode-text {
+    color: #5B5EF4;  /* Blue for rest mode */
+    background-color: rgba(91, 94, 244, 0.1);  /* Light blue background */
+    border: 2px solid rgba(91, 94, 244, 0.2);
 }
 
 /* Remove unused styles */
 #work-mode, #rest-mode, .mode-controls {
     margin: 1.2rem 0;
+}
+
+/* Update the controls spacing to accommodate three buttons */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;  /* Slightly more space between buttons */
+    margin: 2rem 0;
+}
+
+/* Make buttons more compact to fit nicely in one row */
+.controls button {
+    padding: 0.8rem 1.4rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;  /* Space between title and button */
+    align-items: center;              /* Center items vertically */
+    margin-bottom: 2rem;
+    padding: 0 1rem;                 /* Add some horizontal padding */
+}
+
+.header h1 {
+    margin: 0;                       /* Remove default margin */
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    text-align: center;              /* Center the title text */
+    flex-grow: 1;                    /* Allow title to take available space */
+    padding-right: 1rem;             /* Add some space between title and button */
+}
+
+/* Mode toggle specific styles */
+#mode-toggle {
+    font-size: 1.8rem;               /* Slightly larger emoji */
+    padding: 0.6rem;
+    min-width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;              /* Make it circular */
+    background-color: transparent;    /* Remove background */
+    border: 2px solid currentColor;  /* Add border that matches text color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Work mode toggle styles (showing rest mode button) */
+body:not(.rest-time) #mode-toggle {
+    color: #FF9F1C;  /* Orange for rest button during work mode */
+    border-color: #FF9F1C;
+}
+
+body:not(.rest-time) #mode-toggle:hover {
+    background-color: #FF9F1C;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Rest mode toggle styles (showing work mode button) */
+body.rest-time #mode-toggle {
+    color: #5B5EF4;  /* Purple for work button during rest mode */
+    border-color: #5B5EF4;
+}
+
+body.rest-time #mode-toggle:hover {
+    background-color: #5B5EF4;
+    color: white;
+    transform: scale(1.05);
+}
+
+.quote-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;  /* Center the quote text */
+    overflow-wrap: break-word;  /* Allow long words to break and wrap */
+}
+
+.quote {
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0;
+    transition: opacity 0.3s ease;
+    white-space: normal;  /* Allow text to wrap */
+}
+
+/* Work mode quotes */
+body:not(.rest-time) .quote {
+    color: #FF4C4C;  /* Red for work mode quotes */
+}
+
+/* Rest mode quotes */
+body.rest-time .quote {
+    color: #5B5EF4;  /* Blue for rest mode quotes */
+}
+
+/* General styles for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;  /* Use a larger percentage for smaller screens */
+        padding: 1.5rem;  /* Reduce padding */
+    }
+
+    .header h1 {
+        font-size: 1.5rem;  /* Smaller font size for the title */
+    }
+
+    .timer-display {
+        font-size: 5rem;  /* Smaller font size for the timer */
+    }
+
+    .controls button {
+        font-size: 1rem;  /* Smaller font size for buttons */
+        padding: 0.5rem 1rem;  /* Adjust padding */
+    }
+
+    #mode-toggle {
+        font-size: 1.5rem;  /* Smaller emoji size */
+        min-width: 3rem;    /* Adjust minimum width */
+        height: 3rem;       /* Adjust height */
+    }
+
+    #mode-text {
+        font-size: 1rem;  /* Smaller font size for mode text */
+    }
+
+    .quote {
+        font-size: 0.9rem;  /* Smaller font size for quotes */
+    }
+}
+
+/* Additional styles for very small screens */
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;  /* Stack title and button vertically */
+        align-items: center;      /* Center items */
+    }
+
+    .header h1 {
+        margin-bottom: 1rem;  /* Add space below the title */
+    }
+
+    .controls {
+        flex-direction: column;  /* Stack buttons vertically */
+        gap: 0.5rem;             /* Adjust spacing */
+    }
 } 
